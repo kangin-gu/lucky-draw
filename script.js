@@ -16,7 +16,7 @@
     items = [];
     for(let i=1;i<=MAX;i++){
       const el = document.createElement('div');
-      el.className = 'item';
+      el.className = 'item bg-white rounded-lg shadow text-center py-3 cursor-pointer font-semibold transition transform hover:-translate-y-1';
       el.textContent = i;
       el.dataset.num = i;
       el.addEventListener('click', () => toggleDisable(i));
@@ -28,7 +28,11 @@
   function toggleDisable(n){
     const it = items[n-1];
     it.disabled = !it.disabled;
-    it.el.classList.toggle('disabled', it.disabled);
+    if(it.disabled){
+      it.el.classList.add('opacity-40','line-through','cursor-not-allowed');
+    } else {
+      it.el.classList.remove('opacity-40','line-through','cursor-not-allowed');
+    }
   }
 
   function getAvailable(){
@@ -57,18 +61,18 @@
   function highlight(n){
     clearSelected();
     const it = items[n-1];
-    it.el.classList.add('selected');
+    it.el.classList.add('bg-gradient-to-r','from-blue-500','to-sky-400','text-white','shadow-lg');
     showResult(n + '번');
   }
 
   function clearSelected(){
-    items.forEach(i=>i.el.classList.remove('selected'));
+    items.forEach(i=>i.el.classList.remove('bg-gradient-to-r','from-blue-500','to-sky-400','text-white','shadow-lg'));
   }
 
   function disableNumber(n){
     const it = items[n-1];
     it.disabled = true;
-    it.el.classList.add('disabled');
+    it.el.classList.add('opacity-40','line-through','cursor-not-allowed');
   }
 
   function markPickedAsDisabled(){
@@ -92,7 +96,10 @@
   }
 
   function resetAll(){
-    items.forEach(i=>{ i.disabled=false; i.el.classList.remove('disabled','selected'); });
+    items.forEach(i=>{
+      i.disabled=false;
+      i.el.classList.remove('opacity-40','line-through','cursor-not-allowed','bg-gradient-to-r','from-blue-500','to-sky-400','text-white','shadow-lg');
+    });
     history = [];
     renderHistory();
     showResult('—');

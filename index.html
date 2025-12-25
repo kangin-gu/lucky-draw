@@ -4,41 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>청소 당번 뽑기 (1–30)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <main class="container">
-    <h1>청소 당번 뽑기</h1>
+<body class="bg-gradient-to-b from-indigo-50 to-white min-h-screen text-gray-800">
+  <main class="max-w-3xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">청소 당번 뽑기</h1>
 
-    <section class="controls">
-      <div class="buttons">
-        <button id="pickBtn">랜덤 뽑기</button>
-        <button id="resetBtn">초기화</button>
-        <button id="markDoneBtn">뽑힌 번호 비활성화</button>
+    <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+      <div class="flex gap-2">
+        <button id="pickBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">랜덤 뽑기</button>
+        <button id="resetBtn" class="bg-gray-100 px-4 py-2 rounded-lg border hover:bg-gray-200">초기화</button>
+        <button id="markDoneBtn" class="bg-yellow-100 px-4 py-2 rounded-lg border hover:bg-yellow-200">뽑힌 번호 비활성화</button>
       </div>
-      <div class="options">
-        <label>
-          <input type="checkbox" id="autoDisable"> 뽑힌 번호 자동 비활성화
-        </label>
-      </div>
+      <label class="flex items-center text-sm text-gray-600">
+        <input type="checkbox" id="autoDisable" class="mr-2 h-4 w-4">
+        뽑힌 번호 자동 비활성화
+      </label>
     </section>
 
-    <section class="result" aria-live="polite">
-      <div id="resultBox" class="result-box">—</div>
+    <section class="mb-4">
+      <div id="resultBox" class="h-20 flex items-center justify-center rounded-xl bg-white shadow text-3xl font-extrabold text-blue-600">—</div>
     </section>
 
-    <section class="grid-wrap">
-      <div id="grid" class="grid"></div>
+    <section class="mb-6">
+      <div id="grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
     </section>
 
-    <section class="history-wrap">
-      <h2>뽑기 기록</h2>
-      <ol id="history" class="history"></ol>
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">뽑기 기록</h2>
+      <ol id="history" class="list-decimal pl-5 text-sm text-gray-700"></ol>
     </section>
 
-    <footer class="note">번호를 클릭하면 수동으로 비활성화/활성화할 수 있습니다.</footer>
+    <footer class="text-sm text-gray-500">번호를 클릭하면 수동으로 비활성화/활성화할 수 있습니다.</footer>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
